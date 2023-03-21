@@ -1,9 +1,17 @@
-import { AppBar, IconButton, Toolbar, Typography } from "@mui/material"
+import {
+  AppBar,
+  Chip,
+  Divider,
+  IconButton,
+  Stack,
+  Toolbar,
+  Typography
+} from "@mui/material"
 import MenuIcon from "@mui/icons-material/Menu"
 import SearchIcon from "@mui/icons-material/Search"
 import MoreIcon from "@mui/icons-material/MoreVert"
 
-export default function TopBar() {
+export default function TopBar(props: { toggleDrawer: (state: boolean) => void }) {
   return (
     <AppBar>
       <Toolbar>
@@ -12,6 +20,7 @@ export default function TopBar() {
           edge="start"
           color="inherit"
           aria-label="open drawer"
+          onClick={() => props.toggleDrawer(true)}
           sx={{ mr: 2 }}
         >
           <MenuIcon />
@@ -22,7 +31,7 @@ export default function TopBar() {
           component="div"
           sx={{ flexGrow: 1 }}
         >
-          PokeDex
+          Pokédex
         </Typography>
         <IconButton size="large" aria-label="search" color="inherit">
           <SearchIcon />
@@ -36,6 +45,22 @@ export default function TopBar() {
           <MoreIcon />
         </IconButton>
       </Toolbar>
+      <Stack
+        direction="row"
+        spacing={2}
+        divider={<Divider orientation="vertical" variant="middle" flexItem />}
+        justifyContent="center"
+        alignItems="center"
+        sx={{ pb: 1 }}
+      >
+        <Chip
+          label="版本"
+          clickable
+        />
+        <Chip label="属性"
+          clickable
+        />
+      </Stack>
     </AppBar>
   )
 }
